@@ -92,22 +92,49 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.dispatch-sheet-row {
+    height: 100%;
+    text-align: center;
+    overflow: auto;
+    border-bottom: 0.1em solid #8E8E93;
+    border-right: 0.1em solid #8E8E93;
+    overflow: auto;
+}
+
+.left-column-drivers {
+    height: 100%;
+    max-height: 100%;
+    width: 17.6%; /*golden ration percentage*/
+    float: left;
+    border-left: 0.1em solid #8E8E93;
+    box-sizing:border-box;
+}
+
+.right-column-days {
+    height: 100%;
+    width: 20.6%; /*golden ration percentage*/
+    float: left;
+    border-left: 0.1em solid #8E8E93;
+    box-sizing:border-box;
+}
 
 
+.trip:hover, .trip:hover div.trip-info{
+    background-color: #FFE8AA; /*mail chimp yellow-4*/
+        cursor: pointer;
+}
 
+.trip-id {
+    border-bottom: 0.1em dashed #8E8E93;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.driver-info,.trip-info {
+    padding: 0.1em;
+    height: 100%;
+    font-size: 0.9em;
+    border-bottom: 0.1em dotted #8E8E93;
+    background-color: #F2F2F2; /*mail chimp gray-4*/
+}
 
 /* ==========================================================================
    Helper classes
