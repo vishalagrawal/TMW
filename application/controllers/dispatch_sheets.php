@@ -19,7 +19,12 @@ class Dispatch_sheets extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('dispatch_sheets_v1');
+		// create array to send to view
+		$data = array(
+			'title' 		  			=> 'Dispatch Sheets'
+		);
+
+		$this->load->view('dispatch_sheets_v1', $data);
 	}
 }
 
