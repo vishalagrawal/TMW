@@ -15,18 +15,19 @@ class Detail_from_tmw_combinations extends CI_Model {
      */
     function create_weight_maximization_report()
     {
-        // get all the distinct trailer cubes from the database
         $this->db->select('*');
         $this->db->from('detail_from_tmw');
         $this->db->where('current_status','APPRVD');
         $this->db->order_by('pick_up_driver','asc');
         $this->db->order_by('deliver_by','asc');
+        //$this->db->limit(1);
         $details_from_tmw_combinations_query = $this->db->get();
 
         $weight_maximation_report = array();
 
         foreach($details_from_tmw_combinations_query->result() as $row)
         {
+            /*get the tractor information*/
             $this->db->select('*');
             $this->db->from('tractors');
             $this->db->where('tractor_number',$row->pick_up_tractor);
@@ -37,6 +38,7 @@ class Detail_from_tmw_combinations extends CI_Model {
                 $tractor = $tractor_query->row_array(); 
             }
             
+            /*get the trailer information*/
             $this->db->select('*');
             $this->db->from('trailers_tank');
             $this->db->where('trailer_number',$row->pick_up_trailer);
@@ -46,6 +48,23 @@ class Detail_from_tmw_combinations extends CI_Model {
             {
                 $trailer = $trailer_query->row_array();
             }
+
+            /*get the weight goal*/
+            $this->db->select('*');
+            $this->db->from('commodity_weight_goals');
+            $this->db->where('commodity_code',$row->commodity_code);
+            $commodity_weight_query = $this->db->get();
+
+            if($commodity_weight_query->num_rows() > 0)
+            {
+                $commodity_weight = $commodity_weight_query->row_array();
+                $weight_goal = $commodity_weight[$trailer['trailer_size']];
+            }
+            else
+            {
+                $weight_goal = -1;
+            }
+
 
             $run = array (
                 'pick_up_driver'        => $row->pick_up_driver,
@@ -67,6 +86,7 @@ class Detail_from_tmw_combinations extends CI_Model {
                 'rate'                  => $row->rate,
                 'driver_rate'           => $row->driver_rate,
                 'weight'                => $row->weight,
+                'weight_goal'           => $commodity_weight[$trailer['trailer_size']],
                 'freight_charges'       => $row->freight_charges,
                 'accessorial_charges'   => $row->accessorial_charges,
                 'current_status'        => $row->current_status

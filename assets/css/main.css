@@ -93,48 +93,102 @@ textarea {
    Author's custom styles
    ========================================================================== */
 .dispatch-sheet-row {
-    height: 100%;
-    text-align: center;
-    overflow: auto;
+    height: auto;
     border-bottom: 0.1em solid #8E8E93;
-    border-right: 0.1em solid #8E8E93;
     overflow: auto;
+    text-align: center;
 }
 
 .left-column-drivers {
-    height: 100%;
-    max-height: 100%;
+    height: 90%;
     width: 17.6%; /*golden ration percentage*/
     float: left;
-    border-left: 0.1em solid #8E8E93;
-    box-sizing:border-box;
 }
 
 .right-column-days {
-    height: 100%;
+    height: 90%;
     width: 20.6%; /*golden ration percentage*/
     float: left;
-    border-left: 0.1em solid #8E8E93;
-    box-sizing:border-box;
 }
 
+.right-column-settings {
+    height: 90%;
+    width: 41.2%; /*golden ration percentage*/
+    float: left;
+}
 
-.trip:hover, .trip:hover div.trip-info{
-    background-color: #FFE8AA; /*mail chimp yellow-4*/
+select {
+    width: 95%;
+    text-align: center;
+}
+
+.left {
+    border-left: none !important;
+}
+
+.right {
+    border-right: none !important;
+}
+
+.top {
+    border-top: none !important;
+}
+
+.bottom {
+    border-bottom: none !important;
+}
+
+.none {
+    border: none !important;
+}
+
+.left-text {
+    text-align: left;
+}
+
+.right-text {
+    text-align: right;
+}
+
+    .header {
+        border-left: 0.1em dotted #8E8E93;
+        border-right: 0.1em dotted #8E8E93;
+    }
+
+    .driver {
         cursor: pointer;
-}
+    }
 
-.trip-id {
-    border-bottom: 0.1em dashed #8E8E93;
-}
+    .driver-name {
+        border-right: 0.1em dotted #8E8E93;
+        border-bottom: 0.1em dotted #8E8E93;
+    }
 
-.driver-info,.trip-info {
-    padding: 0.1em;
-    height: 100%;
-    font-size: 0.9em;
-    border-bottom: 0.1em dotted #8E8E93;
-    background-color: #F2F2F2; /*mail chimp gray-4*/
-}
+    .driver-info {
+        font-size: 0.9em;
+        border-right: 0.1em dotted #8E8E93;
+        background-color: #F2F2F2; /*mail chimp gray-4*/
+        display: none;
+    }
+
+    .trip {
+        cursor: pointer;
+    }
+
+    .trip-id {
+        border-left: 0.1em dotted #8E8E93;
+        border-right: 0.1em dotted #8E8E93;
+        border-bottom: 0.1em dotted #8E8E93;
+    }
+
+    .trip-info {
+        font-size: 0.9em;
+        border-left: 0.1em dotted #8E8E93;
+        border-right: 0.1em dotted #8E8E93;
+        border-bottom: 0.1em dotted #8E8E93;
+        background-color: #F2F2F2; /*mail chimp gray-4*/
+        display: none;
+    }
 
 /* ==========================================================================
    Helper classes

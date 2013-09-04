@@ -21,7 +21,8 @@ class Dispatch_sheets extends CI_Controller {
 	{
 		// create array to send to view
 		$data = array(
-			'title' 		  			=> 'Dispatch Sheets'
+			'title' 		  			=> 'Dispatch Sheets',
+			'start_date'				=> date('l, F j Y')
 		);
 
 		$this->load->view('dispatch_sheets_v1', $data);

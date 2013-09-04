@@ -14,6 +14,8 @@
 
         <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/main.css">
         <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/normalize.css">
+        <script type="text/javascript" src="<?php echo asset_url();?>js/dispatch_sheets_v1.js"></script>
+
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -23,249 +25,131 @@
         <!-- Add your site or application content here -->
         <div class="dispatch-sheet-row">
             <div class="left-column-drivers">
-                Drivers
+                <div class="none">
+                    <select>
+                        <option value="defualt">driver filter(s)</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="right-column-days">
-                Sunday, August 25 2013
+            <div class="right-column-settings">
+                <div class="previous-day none left-text">
+                   <a href="javascript:void(0)" onclick="previousDay()">&larr; Previous Day</a>
+                </div> 
             </div>
-
-            <div class="right-column-days">
-                Monday, August 26 2013
-            </div>
-
-            <div class="right-column-days">
-                Tuesday, August 27 2013
-            </div>
-
-            <div class="right-column-days">
-                Wednesday, August 28 2013
+            <div class="right-column-settings">
+                <div class="previous-day none right-text">
+                    <a href="javascript:void(0)" onclick="nextDay()">Next Day &rarr;</a>
+                </div>
             </div>
         </div>
+
         <div class="dispatch-sheet-row">
             <div class="left-column-drivers">
-                Vishal Agrawal
-                <div class="driver-info">
-                    <div class="tractor">
-                        Assigned Tractor: 1356
-                    </div>
-                    <div class="trailer">
-                        Assigned Trailer: 861
-                    </div>
-                    <div class="phone">
-                        412-499-0776
-                    </div>
+                <div class="header left">
+                    Drivers
+                </div>
+            </div>
+
+            <div class="right-column-days" id="">
+                <div class="header" id="start-date">
+                    <?echo $start_date;?>
                 </div>
             </div>
 
             <div class="right-column-days">
-                <div class="trip">
-                    <div class="trip-id">
-                        652584
-                    </div>
-                    <div class="trip-info">
-                        <div class="shipper-info">
-                            Colonial Metals
-                            Columbia, PA 17512
-                        </div>
-                        <div class="consignee-info">
-                            WEFCO
-                            Franklin, NH 03235
-                        </div>
-                        <div class="commodity">
-                            FAK
-                        </div>
-                        <div class="tractor">
-                            Tractor: 1356
-                        </div>
-                        <div class="trailer">
-                            Trailer: 861
-                        </div>
-                        <div class="trip-delay">
-                            Trip Delay: No
-                        </div>
-                        <div class="tank-wash">
-                            Tank Wash: No
-                        </div>
-                        <div class="dead-head">
-                            Dead Head: No
-                        </div>
-                    </div>
+                <div class="header" id="start-date-plus-1">
+                    <?echo date('l, F j Y',strtotime("+1 day", strtotime($start_date)));?>
                 </div>
-                <div class="trip">
-                    <div class="trip-id">
-                        652584
+            </div>
+
+            <div class="right-column-days" id="start-date-plus-2">
+                <div class="header">
+                    <?echo date('l, F j Y',strtotime("+2 day", strtotime($start_date)));?>
+                </div>
+            </div>
+
+            <div class="right-column-days">
+                <div class="header right" id="start-date-plus-3">
+                    <?echo date('l, F j Y',strtotime("+3 day", strtotime($start_date)));?>
+                </div>
+            </div>
+        </div>
+
+        <div class="dispatch-sheet-row">
+            <div class="left-column-drivers">
+                <div class="driver" id="vishal-agrawal" onclick="toggleDetail('vishal-agrawal')">
+                    <div class="driver-name left">
+                        Vishal Agrawal
                     </div>
-                    <div class="trip-info">
-                        <div class="shipper-info">
-                            Colonial Metals
-                            Columbia, PA 17512
-                        </div>
-                        <div class="consignee-info">
-                            WEFCO
-                            Franklin, NH 03235
-                        </div>
-                        <div class="commodity">
-                            FAK
-                        </div>
+                    <div class="driver-info left" id="vishal-agrawal-info">
                         <div class="tractor">
-                            Tractor: 1356
+                            Assigned Tractor: 1356
                         </div>
                         <div class="trailer">
-                            Trailer: 861
+                            Assigned Trailer: 861
                         </div>
-                        <div class="trip-delay">
-                            Trip Delay: No
-                        </div>
-                        <div class="tank-wash">
-                            Tank Wash: No
-                        </div>
-                        <div class="dead-head">
-                            Dead Head: No
+                        <div class="phone">
+                            412-499-0776
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="right-column-days">
-                <div class="trip">
-                    <div class="trip-id">
-                        652584
+            <div id="all-days">
+                <div class="right-column-days" id="day-1">
+                    <div class="trip" id="652584" onclick="toggleDetail('652584')">
+                        <div class="trip-id top">
+                            652584
+                        </div>
+                        <div class="trip-info" id="652584-info">
+                            <div class="shipper-info">
+                                <label>
+                                    Colonial Metal Columbia, PA 17512   
+                                </label>
+                                <input>
+                            </div>
+                            <div class="consignee-info">
+                                WEFCO
+                                Franklin, NH 03235
+                            </div>
+                            <div class="commodity">
+                                FAK
+                            </div>
+                            <div class="tractor">
+                                Tractor: 1356
+                            </div>
+                            <div class="trailer">
+                                Trailer: 861
+                            </div>
+                            <div class="trip-delay">
+                                Trip Delay: No
+                            </div>
+                            <div class="tank-wash">
+                                Tank Wash: No
+                            </div>
+                            <div class="dead-head">
+                                Dead Head: No
+                            </div>
+                        </div>
                     </div>
-                    <div class="trip-info">
-                        <div class="shipper-info">
-                            Colonial Metals
-                            Columbia, PA 17512
-                        </div>
-                        <div class="consignee-info">
-                            WEFCO
-                            Franklin, NH 03235
-                        </div>
-                        <div class="commodity">
-                            FAK
-                        </div>
-                        <div class="tractor">
-                            Tractor: 1356
-                        </div>
-                        <div class="trailer">
-                            Trailer: 861
-                        </div>
-                        <div class="trip-delay">
-                            Trip Delay: No
-                        </div>
-                        <div class="tank-wash">
-                            Tank Wash: No
-                        </div>
-                        <div class="dead-head">
-                            Dead Head: No
-                        </div>
-                    </div>
-                </div>
-                <div class="trip">
-                    <div class="trip-id">
-                        652584
-                    </div>
-                    <div class="trip-info">
-                        <div class="shipper-info">
-                            Colonial Metals
-                            Columbia, PA 17512
-                        </div>
-                        <div class="consignee-info">
-                            WEFCO
-                            Franklin, NH 03235
-                        </div>
-                        <div class="commodity">
-                            FAK
-                        </div>
-                        <div class="tractor">
-                            Tractor: 1356
-                        </div>
-                        <div class="trailer">
-                            Trailer: 861
-                        </div>
-                        <div class="trip-delay">
-                            Trip Delay: No
-                        </div>
-                        <div class="tank-wash">
-                            Tank Wash: No
-                        </div>
-                        <div class="dead-head">
-                            Dead Head: No
-                        </div>
+            
+                    <div class="trip">
+                        <a href="">add trip</a>
                     </div>
                 </div>
-            </div>
-            <div class="right-column-days">
-                <div class="trip">
-                    <div class="trip-id">
-                        652584
-                    </div>
-                    <div class="trip-info">
-                        <div class="shipper-info">
-                            Colonial Metals
-                            Columbia, PA 17512
-                        </div>
-                        <div class="consignee-info">
-                            WEFCO
-                            Franklin, NH 03235
-                        </div>
-                        <div class="commodity">
-                            FAK
-                        </div>
-                        <div class="tractor">
-                            Tractor: 1356
-                        </div>
-                        <div class="trailer">
-                            Trailer: 861
-                        </div>
-                        <div class="trip-delay">
-                            Trip Delay: No
-                        </div>
-                        <div class="tank-wash">
-                            Tank Wash: No
-                        </div>
-                        <div class="dead-head">
-                            Dead Head: No
-                        </div>
+                <div class="right-column-days" id="day-2">
+                    <div class="trip">
+                        <a href="">add trip</a>
                     </div>
                 </div>
-                <div class="trip">
-                    <div class="trip-id">
-                        652584
-                    </div>
-                    <div class="trip-info">
-                        <div class="shipper-info">
-                            Colonial Metals
-                            Columbia, PA 17512
-                        </div>
-                        <div class="consignee-info">
-                            WEFCO
-                            Franklin, NH 03235
-                        </div>
-                        <div class="commodity">
-                            FAK
-                        </div>
-                        <div class="tractor">
-                            Tractor: 1356
-                        </div>
-                        <div class="trailer">
-                            Trailer: 861
-                        </div>
-                        <div class="trip-delay">
-                            Trip Delay: No
-                        </div>
-                        <div class="tank-wash">
-                            Tank Wash: No
-                        </div>
-                        <div class="dead-head">
-                            Dead Head: No
-                        </div>
+                <div class="right-column-days" id="day-3">
+                    <div class="trip">
+                        <a href="">add trip</a>
                     </div>
                 </div>
-            </div>
-            <div class="right-column-days">
-                <div class="trip">
-                    <div class="trip-id">
-                        652584
+                <div class="right-column-days" id="day-4">
+                    <div class="trip">
+                        <a href="">add trip</a>
                     </div>
                 </div>
             </div>
