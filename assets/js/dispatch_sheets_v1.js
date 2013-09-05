@@ -1,4 +1,8 @@
-/* function to toggle the detail box for driver information and trip information */
+/* 
+ *
+ *	function to toggle the detail box for driver information and trip information 
+ *
+ */
 function toggleDetail(div_id)
 {
 	if(document.getElementById(div_id+'-info').className.split(' ').indexOf('displaying-div') < 0)
@@ -13,7 +17,11 @@ function toggleDetail(div_id)
 	}
 }
 
-/* function to go to previous date */
+/* 
+ *
+ *	function to go to previous date 
+ *
+ */
 function previousDay()
 {
 	// get the current date from the headers
@@ -31,10 +39,14 @@ function previousDay()
 	document.getElementById('day-4').innerHTML = document.getElementById('day-3').innerHTML;
 	document.getElementById('day-3').innerHTML = document.getElementById('day-2').innerHTML;
 	document.getElementById('day-2').innerHTML = document.getElementById('day-1').innerHTML;
-	document.getElementById('day-1').innerHTML = '<div class="trip">add trip</div>';
+	document.getElementById('day-1').innerHTML = '<a class="trip">add trip</a>';
 }
 
-/* function to go to previous date */
+/* 
+ *	
+ *	function to go to next date 
+ *
+ */
 function nextDay()
 {
 	// get the current date from the headers
@@ -52,10 +64,14 @@ function nextDay()
 	document.getElementById('day-1').innerHTML = document.getElementById('day-2').innerHTML;
 	document.getElementById('day-2').innerHTML = document.getElementById('day-3').innerHTML;
 	document.getElementById('day-3').innerHTML = document.getElementById('day-4').innerHTML;
-	document.getElementById('day-4').innerHTML = '<div class="trip">add trip</div>';
+	document.getElementById('day-4').innerHTML = '<a class="trip">add trip</a>';
 }
 
-
+/*
+ *
+ *	function to increment the date positively or negatively 
+ *
+ */
 function incrementDate(given_date,number_of_days)
 {
 	var day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -70,3 +86,48 @@ function incrementDate(given_date,number_of_days)
 	// return new date with required format
 	return day[date.getDay()]+', '+month[date.getMonth()]+' '+date.getDate()+' '+date.getFullYear();
 }
+
+/*
+ *
+ *	function to make the entries editable
+ *
+ */
+ function editEntry(input_name)
+ {
+ 	
+
+ 	// get all the inputs by name
+ 	var all_imputs = document.getElementsByName(input_name);
+ 	for(var i=0; i<all_imputs.length; i++)
+ 	{
+ 		// set the disabled to false for all the inputs
+ 		all_imputs[i].disabled = false;
+ 	}
+
+ 	// change the button to save from edit and change the link as well
+ 	var edit_button = document.getElementById(input_name+'-button');
+ 	edit_button.onclick = function (){saveEntry(input_name);};
+ 	edit_button.innerHTML = 'Save';
+ }
+
+/*
+ *
+ *	function to save the changes to the entries 
+ *
+ */
+ function saveEntry(input_name)
+ {
+ 	// get all the inputs by name
+ 	var all_imputs = document.getElementsByName(input_name);
+ 	for(var i=0; i<all_imputs.length; i++)
+ 	{
+ 		// set the disabled to true for all the inputs
+ 		all_imputs[i].disabled = true;
+ 	}
+
+ 	// change the button to save from edit and change the link as well
+ 	var save_button = document.getElementById(input_name+'-button');
+ 	save_button.onclick = function (){editEntry(input_name);};
+ 	save_button.innerHTML = 'Edit';
+ }
+

@@ -11,9 +11,8 @@
         <meta name="viewport" content="width=device-width">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/main.css">
         <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/main.css">
         <script type="text/javascript" src="<?php echo asset_url();?>js/dispatch_sheets_v1.js"></script>
 
     </head>
@@ -26,7 +25,7 @@
         <div class="dispatch-sheet-row">
             <div class="left-column-drivers">
                 <div class="none">
-                    <select>
+                    <select class="driver-filter">
                         <option value="defualt">driver filter(s)</option>
                     </select>
                 </div>
@@ -84,51 +83,120 @@
                     </div>
                     <div class="driver-info left" id="vishal-agrawal-info">
                         <div class="tractor">
-                            Assigned Tractor: 1356
+                            <label>
+                                Assigned Tractor
+                            </label>
+                            <input type="text" autocomplete="on" value="1356" disabled>
                         </div>
                         <div class="trailer">
-                            Assigned Trailer: 861
+                            <label>
+                                Assigned Trailer
+                            </label>
+                            <input type="text" autocomplete="on" value="861" disabled>
                         </div>
-                        <div class="phone">
-                            412-499-0776
+                        <div class="phone">  
+                            <label>
+                                Phone Number
+                            </label>
+                            <input type="text" autocomplete="on" value="412-499-0776" disabled>
+                        </div>
+                        <div class="domiscile">  
+                            <label>
+                                Domiscile Location
+                            </label>
+                            <input type="text" autocomplete="on" value="Ono, PA 17077" disabled>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="all-days">
                 <div class="right-column-days" id="day-1">
-                    <div class="trip" id="652584" onclick="toggleDetail('652584')">
-                        <div class="trip-id top">
-                            652584
+                    <div class="trip">
+                        <div class="trip-id top" id="652584" onclick="toggleDetail('652584')">
+                            Columbia, PA - Franklin, NH
                         </div>
                         <div class="trip-info" id="652584-info">
+                            <div class="trip-type" id="652584-trip-type">
+                                <label>
+                                    Trip Type
+                                </label>
+                                <select>
+                                    <option value="trip-number">Create Trip</option>
+                                    <option value="freight-bill">Freight Bill</option>
+                                    <option value="trip-number">Trip Number</option>
+                                <select>
+                            </div>
                             <div class="shipper-info">
                                 <label>
-                                    Colonial Metal Columbia, PA 17512   
+                                    Trip Number
                                 </label>
-                                <input>
+                                <input type="text" name="652584-input" autocomplete="on" value="652584" disabled>
+                            </div>
+                            <div class="shipper-info">
+                                <label>
+                                    Shipper
+                                </label>
+                                <input type="text" autocomplete="on" value="Colonial Metal - Columbia, PA 17512" disabled>
+                            </div>
+                            <div class="pick-up-window">
+                                <label>
+                                    Pick Up Window
+                                </label>
+                                <input type="text" autocomplete="on" value="8/5 @ 11:00am to 8/5 @ 12:00pm" disabled>
                             </div>
                             <div class="consignee-info">
-                                WEFCO
-                                Franklin, NH 03235
+                                <label>
+                                    Consignee
+                                </label>
+                                <input type="text" autocomplete="on" value="WEFCO Franklin, NH 03235" disabled>
+                            </div>
+                            <div class="delivery-window">
+                                <label>
+                                    Delivery Window
+                                </label>
+                                <input type="text" autocomplete="on" value="8/5 @ 11:00am to 8/5 @ 12:00pm" disabled>
                             </div>
                             <div class="commodity">
-                                FAK
+                                <label>
+                                    Commodity
+                                </label>
+                                <input type="text" autocomplete="on" value="FAK" disabled>   
                             </div>
                             <div class="tractor">
-                                Tractor: 1356
+                                <label>
+                                    Tractor
+                                </label>
+                                <input type="text" autocomplete="on" value="1356" disabled>  
                             </div>
                             <div class="trailer">
-                                Trailer: 861
+                                <label>
+                                    Trailer
+                                </label>
+                                <input type="text" autocomplete="on" value="861" disabled> 
                             </div>
                             <div class="trip-delay">
-                                Trip Delay: No
+                                <label>
+                                    Trip Delay
+                                </label>
+                                <input type="radio" name="652584-trip-delay" value="Yes" disabled>Yes
+                                <input type="radio" name="652584-trip-delay" value="No" disabled>No
                             </div>
                             <div class="tank-wash">
-                                Tank Wash: No
+                                <label>
+                                    Tank Wash
+                                </label>
+                                <input type="radio" name="652584-tank-wash" value="Yes" disabled>Yes
+                                <input type="radio" name="652584-tank-wash" value="No" disabled>No
                             </div>
                             <div class="dead-head">
-                                Dead Head: No
+                                <label>
+                                    Dead Head
+                                </label>
+                                <input type="radio" name="652584-dead-head" value="Yes" disabled>Yes
+                                <input type="radio" name="652584-dead-head" value="No" disabled>No
+                            </div>
+                            <div class="edit">
+                                <a class="edit-button" id="652584-input-button" href="javascript:void(0)" onclick="editEntry('652584-input')">Edit</a>
                             </div>
                         </div>
                     </div>
