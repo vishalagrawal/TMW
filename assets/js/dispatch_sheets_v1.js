@@ -24,22 +24,32 @@ function toggleDetail(div_id)
  */
 function previousDay()
 {
-	// get the current date from the headers
+	// get the current date
 	var current_start_date = document.getElementById('start-date').innerHTML;
 	
 	// update the dates in the header
-	document.getElementById('start-date').innerHTML = incrementDate(current_start_date,-1);
-	document.getElementById('start-date-plus-1').innerHTML = incrementDate(current_start_date,0);
-	document.getElementById('start-date-plus-2').innerHTML = incrementDate(current_start_date,1);
-	document.getElementById('start-date-plus-3').innerHTML = incrementDate(current_start_date,2);
+	document.getElementById('start-date').innerHTML = incrementDate(current_start_date,-1,'long');
+	document.getElementById('start-date-plus-1').innerHTML = incrementDate(current_start_date,0,'long');
+	document.getElementById('start-date-plus-2').innerHTML = incrementDate(current_start_date,1,'long');
+	document.getElementById('start-date-plus-3').innerHTML = incrementDate(current_start_date,2,'long');
 
 	// update entries for each day 
+	var day4 = document.getElementsByName('day-4');
+	var day3 = document.getElementsByName('day-3');
+	var day2 = document.getElementsByName('day-2');
+	var day1 = document.getElementsByName('day-1');
 
-	/* works only for one row --- update code for multiple rows */
-	document.getElementById('day-4').innerHTML = document.getElementById('day-3').innerHTML;
-	document.getElementById('day-3').innerHTML = document.getElementById('day-2').innerHTML;
-	document.getElementById('day-2').innerHTML = document.getElementById('day-1').innerHTML;
-	document.getElementById('day-1').innerHTML = '<a class="trip">add trip</a>';
+	for(var i=0; i<day4.length; i++)
+	{
+		day4[i].innerHTML = day3[i].innerHTML;
+		day3[i].innerHTML = day2[i].innerHTML;
+		day2[i].innerHTML = day1[i].innerHTML;
+		/*-------------------- update code to get the entry for the next day --------------------*/
+		day1[i].innerHTML = '<a class="trip">add trip</a>';
+	}
+
+	// update the date range
+	document.getElementById('date-range').innerHTML = incrementDate(current_start_date,-1,'short') + ' - ' + incrementDate(current_start_date,2,'short');;
 }
 
 /* 
@@ -53,18 +63,28 @@ function nextDay()
 	var current_start_date = document.getElementById('start-date').innerHTML;
 	
 	// update the dates in the header
-	document.getElementById('start-date').innerHTML = incrementDate(current_start_date,1);
-	document.getElementById('start-date-plus-1').innerHTML = incrementDate(current_start_date,2);
-	document.getElementById('start-date-plus-2').innerHTML = incrementDate(current_start_date,3);
-	document.getElementById('start-date-plus-3').innerHTML = incrementDate(current_start_date,4);
+	document.getElementById('start-date').innerHTML = incrementDate(current_start_date,1,'long');
+	document.getElementById('start-date-plus-1').innerHTML = incrementDate(current_start_date,2,'long');
+	document.getElementById('start-date-plus-2').innerHTML = incrementDate(current_start_date,3,'long');
+	document.getElementById('start-date-plus-3').innerHTML = incrementDate(current_start_date,4,'long');
 
 	// update entries for each day 
+	var day1 = document.getElementsByName('day-1');
+	var day2 = document.getElementsByName('day-2');
+	var day3 = document.getElementsByName('day-3');
+	var day4 = document.getElementsByName('day-4');
 
-	/* works only for one row --- update code for multiple rows */
-	document.getElementById('day-1').innerHTML = document.getElementById('day-2').innerHTML;
-	document.getElementById('day-2').innerHTML = document.getElementById('day-3').innerHTML;
-	document.getElementById('day-3').innerHTML = document.getElementById('day-4').innerHTML;
-	document.getElementById('day-4').innerHTML = '<a class="trip">add trip</a>';
+	for(var i=0; i<day4.length; i++)
+	{
+		day1[i].innerHTML = day2[i].innerHTML;
+		day2[i].innerHTML = day3[i].innerHTML;
+		day3[i].innerHTML = day4[i].innerHTML;
+		/*-------------------- update code to get the entry for the next day --------------------*/
+		day4[i].innerHTML = '<a class="trip">add trip</a>';
+	}
+
+	// update the date range
+	document.getElementById('date-range').innerHTML = incrementDate(current_start_date,1,'short') + ' - ' + incrementDate(current_start_date,4,'short');;
 }
 
 /*
@@ -72,9 +92,12 @@ function nextDay()
  *	function to increment the date positively or negatively 
  *
  */
-function incrementDate(given_date,number_of_days)
+function incrementDate(given_date,number_of_days,type)
 {
+	// array to store days
 	var day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	
+	// array to store months
 	var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 	// convert given_date to javascript date
@@ -84,7 +107,14 @@ function incrementDate(given_date,number_of_days)
 	date.setDate(date.getDate() + number_of_days);
 	
 	// return new date with required format
-	return day[date.getDay()]+', '+month[date.getMonth()]+' '+date.getDate()+' '+date.getFullYear();
+	if(type === 'long')
+	{
+		return day[date.getDay()]+', '+month[date.getMonth()]+' '+date.getDate()+' '+date.getFullYear();
+	}
+	else
+	{
+		return month[date.getMonth()]+' '+date.getDate()+', '+date.getFullYear();
+	}
 }
 
 /*
@@ -94,20 +124,7 @@ function incrementDate(given_date,number_of_days)
  */
  function editEntry(input_name)
  {
- 	
 
- 	// get all the inputs by name
- 	var all_imputs = document.getElementsByName(input_name);
- 	for(var i=0; i<all_imputs.length; i++)
- 	{
- 		// set the disabled to false for all the inputs
- 		all_imputs[i].disabled = false;
- 	}
-
- 	// change the button to save from edit and change the link as well
- 	var edit_button = document.getElementById(input_name+'-button');
- 	edit_button.onclick = function (){saveEntry(input_name);};
- 	edit_button.innerHTML = 'Save';
  }
 
 /*
@@ -117,17 +134,15 @@ function incrementDate(given_date,number_of_days)
  */
  function saveEntry(input_name)
  {
- 	// get all the inputs by name
- 	var all_imputs = document.getElementsByName(input_name);
- 	for(var i=0; i<all_imputs.length; i++)
- 	{
- 		// set the disabled to true for all the inputs
- 		all_imputs[i].disabled = true;
- 	}
 
- 	// change the button to save from edit and change the link as well
- 	var save_button = document.getElementById(input_name+'-button');
- 	save_button.onclick = function (){editEntry(input_name);};
- 	save_button.innerHTML = 'Edit';
  }
+ 
+ /*
+  *
+  *	function to add a trip to the given driver and day
+  *
+  */
+function addTrip(driver_day_id)
+{
+}
 

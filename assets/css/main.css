@@ -92,6 +92,31 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+/* base styles */
+label {
+    width: 97%;
+    display: block;
+    color: #595959;
+    font-weight: bold;
+    font-size: 0.85em;
+}
+
+select, input[type="text"] {
+    width: 97%;
+    margin-bottom: 1em;
+}
+
+input[type="text"]:disabled {
+    background-color: #F2F2F2;
+    border: none;
+}
+
+input[type="radio"] {
+    margin: 0em 0.5em 1em 1em;
+}
+
+/* dispatch_sheets_styles */
 .dispatch-sheet-row {
     height: auto;
     border-bottom: 0.1em solid #8E8E93;
@@ -105,40 +130,56 @@ textarea {
     float: left;
 }
 
+.right-column-settings-corner {
+    font-size: 0.95em;
+    height: 90%;
+    width: 20.6%; /*golden ration percentage*/
+    float: left;
+}
+
+.right-column-settings-middle {
+    font-size: 0.95em;
+    height: 90%;
+    width: 41.2%; /*golden ration percentage*/
+    float: left;
+}
+
+    select.driver-filter {
+        margin-bottom: 0;
+    }
+
 .right-column-days {
     height: 90%;
     width: 20.6%; /*golden ration percentage*/
     float: left;
 }
 
-.right-column-settings {
-    height: 90%;
-    width: 41.2%; /*golden ration percentage*/
-    float: left;
-}
-
-.left {
+.no-left-border {
     border-left: none !important;
 }
 
-.right {
+.no-right-border {
     border-right: none !important;
 }
 
-.top {
+.no-top-border {
     border-top: none !important;
 }
 
-.bottom {
+.no-bottom-border {
     border-bottom: none !important;
 }
 
-.none {
+.no-border {
     border: none !important;
 }
 
 .left-text {
     text-align: left;
+}
+
+.center-text {
+    text-align: center;
 }
 
 .right-text {
@@ -176,29 +217,6 @@ textarea {
     }
 
     .trip-type {
-        display: none;
-    }
-
-    label {
-        width: 97%;
-        display: block;
-        color: #595959;
-        font-weight: bold;
-        font-size: 0.85em;
-    }
-
-    select, input[type="text"] {
-        width: 97%;
-        margin-bottom: 1em;
-    }
-
-    input[type="text"]:disabled {
-        background-color: #F2F2F2;
-        border: none;
-    }
-
-    input[type="radio"] {
-        margin: 0em 0.5em 1em 1em;
     }
 
 /* ==========================================================================
