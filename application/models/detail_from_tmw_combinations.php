@@ -17,7 +17,8 @@ class Detail_from_tmw_combinations extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('detail_from_tmw');
-        $this->db->where('current_status','APPRVD');
+        /* only retrieve the entries that have been approved aka the weights have been enetered from the BOL's*/
+        $this->db->where('current_status','APPRVD');    
         $this->db->order_by('pick_up_driver','asc');
         $this->db->order_by('deliver_by','asc');
         //$this->db->limit(1);

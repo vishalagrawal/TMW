@@ -30,6 +30,7 @@
                 <th>Consignee Name</th>
                 <th>Consignee City</th>
                 <th>Commodity Code</th>
+                <th>Trailer-Cube</th>
                 <th>Weight-Hauled</th>
                 <th>Weight-Target</th>
                 <th>Weight-Difference</th>
@@ -41,7 +42,6 @@
                 <th>Accessorial Charges</th>
                 <th>Tractor</th>
                 <th>Trailer</th>
-                <th>Trailer-Cube</th>
                 <th>Tractor-Type</th>
                 <th>Tractor-SuperSingles</th>
                 <th>Tractor-AirWeigh</th>
@@ -88,7 +88,7 @@
                                 .$run['pick_up_driver']
                             .'</td>'
                             .'<td>'
-                                .date('l,m-d-Y', strtotime($run['deliver_date']))
+                                .date('m-d-Y', strtotime($run['deliver_date']))
                             .'</td>'
                             .'<td>'
                                 .$run['shipper_name']
@@ -104,6 +104,9 @@
                             .'</td>'
                             .'<td>'
                                 .$run['commodity_code']
+                            .'</td>'
+                            .'<td>'
+                                .$run['trailer_size']
                             .'</td>'
                             .'<td>'
                                 .$run['weight']
@@ -137,9 +140,6 @@
                             .'</td>'
                             .'<td>'
                                 .$run['trailer']
-                            .'</td>'
-                            .'<td>'
-                                .$run['trailer_size']
                             .'</td>'
                             .'<td>'
                                 .$run['tractor_type']

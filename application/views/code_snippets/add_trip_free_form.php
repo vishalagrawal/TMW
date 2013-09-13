@@ -1,4 +1,6 @@
 <!--replace PlaceHolderForPreId with DriverId_Day_TripNumberOfTheDay-->
+<!--eg: VISHALA_9-9-13_1 : for existing trip-->
+<!--eg: VISHALA_9-9-13_2 : add new trip-->
 
 
 <!--adding a free-form trip-->
@@ -81,7 +83,7 @@
                 Dead Head
             </label>
             <input type="radio" name="PlaceHolderForPreId-trip-info-dead-head" value="Yes">Yes
-            <input type="radio" name="PlaceHolderForPreId-trip-info-dead-head" value="No" checked="checked">No
+            <input type="radio" name="PlaceHolderForPreId-trips-info-dead-head" value="No" checked="checked">No
         </div>
         <div class="buttons">
             <a class="button save" id="PlaceHolderForPreId-trip-info-save" href="javascript:void(0)" onclick="saveEntry('PlaceHolderForPreId-trip')">Save</a>
